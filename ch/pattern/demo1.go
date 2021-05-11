@@ -1,4 +1,4 @@
-package main
+package pattern
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 // 无缓冲通道同步等待
-func main() {
+func UnbufferedChannelWait() {
 	c := make(chan struct{})
 
 	go func(i chan struct{}) {
