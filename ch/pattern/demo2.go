@@ -7,9 +7,12 @@ import (
 
 var wg = sync.WaitGroup{}
 
+// range等到channel的close动作后退出
+// 如果channel不close，range就永远阻塞无法退出，又是在主程，就会死锁
 func One() {
 	c := make(chan int, 10)
 
+	// 关闭channel防止range死锁
 	go func() {
 		defer close(c)
 		wg.Wait()
