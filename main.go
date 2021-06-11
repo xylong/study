@@ -1,10 +1,20 @@
 package main
 
-func main() {
-	ch := make(chan int, 1)
-	go func() {
-		<-ch
-	}()
+import (
+	"github.com/sirupsen/logrus"
+)
 
-	println("a")
+func main() {
+	logrus.SetReportCaller(true)
+
+	//logrus.Trace("trace msg")
+	//logrus.Debug("debug msg")
+	logrus.WithFields(logrus.Fields{
+		"user_id": 10001,
+		"ip":      "127.0.0.1",
+	}).Info("hello world")
+	//logrus.Warn("warn msg")
+	//logrus.Error("error msg")
+	//logrus.Fatal("fatal msg")
+	//logrus.Panic("panic msg")
 }
